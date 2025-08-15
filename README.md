@@ -13,15 +13,15 @@ This repo contains the analysis and code used to study a period-preserving link 
 
 - **The Mandelbrot set** (quadratic family)
 
-  $$
+<pre>
   z_{n+1}=z_n^2+c
-  $$
+</pre>
 
   where the interior “bulbs” correspond to attracting cycles of a given period.
 
 - **The Logistic map** (population model)
 
-<pre> `z_{n+1} = z_n^2 + c` `x_{n+1} = r * x_n * (1 - x_n)` </pre>
+<pre> z_{n+1} = z_n^2 + c` `x_{n+1} = r * x_n * (1 - x_n) </pre>
 
   whose bifurcation diagram shows windows of stable period-$k$ behaviour interleaved with chaos.
 

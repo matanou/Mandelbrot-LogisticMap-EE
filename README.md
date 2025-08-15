@@ -5,7 +5,7 @@ Code and visualisations for my IB Mathematics AA HL Extended Essay.
 **Research Question:** *How do the period-n bulbs of the Mandelbrot set correspond to stability regions in the bifurcation diagram of the logistic map?*
 
 > **Note on equations:** GitHub READMEs don’t render LaTeX natively.  
-> All formulas below are embedded as SVG images so they display correctly.
+> All formulas below are embedded as SVG images with a white background so they display clearly in both dark and light themes.
 
 ---
 
@@ -15,13 +15,13 @@ This repo contains the analysis and code used to study a period-preserving link 
 
 - **The Mandelbrot set** (quadratic family)
 
-  ![z recurrence](https://latex.codecogs.com/svg.latex?z_%7Bn%2B1%7D%20%3D%20z_n%5E2%20%2B%20c)
+  ![z recurrence](https://latex.codecogs.com/svg.latex?\bg_white%20z_%7Bn%2B1%7D%20%3D%20z_n%5E2%20%2B%20c)
 
   where the interior “bulbs” correspond to attracting cycles of a given period.
 
 - **The Logistic map** (population model)
 
-  ![logistic map](https://latex.codecogs.com/svg.latex?x_%7Bn%2B1%7D%20%3D%20r\,x_n(1-x_n))
+  ![logistic map](https://latex.codecogs.com/svg.latex?\bg_white%20x_%7Bn%2B1%7D%20%3D%20r\,x_n(1-x_n))
 
   whose bifurcation diagram shows windows of stable period-\(k\) behaviour interleaved with chaos.
 
@@ -35,15 +35,15 @@ The goal is to **match period-\(n\) Mandelbrot bulbs with period-\(k\) stability
 
 - **Logistic map cycles and stability**
 
-  ![cycle and multiplier](https://latex.codecogs.com/svg.latex?f_r(x)%3D%20r\,x(1-x),\quad%20f_r%5E{k}(x)%3D%20x,\quad%20\left%7C\left(f_r%5E{k}\right)'(x)\right%7C%20%3D%20\prod_%7Bj%3D0%7D%5E%7Bk-1%7D\left%7C%20r(1-2x_j)\right%7C%20%3C%201)
+  ![cycle and multiplier](https://latex.codecogs.com/svg.latex?\bg_white%20f_r(x)%3D%20r\,x(1-x),\quad%20f_r%5E{k}(x)%3D%20x,\quad%20\left%7C\left(f_r%5E{k}\right)'(x)\right%7C%20%3D%20\prod_%7Bj%3D0%7D%5E%7Bk-1%7D\left%7C%20r(1-2x_j)\right%7C%20%3C%201)
 
   Bifurcation boundaries occur where
 
-  ![boundary](https://latex.codecogs.com/svg.latex?%5Cleft%7C%20%5Cleft(f_r%5E{k}%5Cright)'(x)%20%5Cright%7C%20%3D%201.)
+  ![boundary](https://latex.codecogs.com/svg.latex?\bg_white%20\left%7C%20\left(f_r%5E{k}\right)'(x)%20\right%7C%20%3D%201.)
 
 - **Mandelbrot bulbs (quadratic family)**
 
-  ![bulb condition](https://latex.codecogs.com/svg.latex?f_c(z)%3D%20z%5E2%2Bc,\quad%20f_c%5E{n}(0)%3D0%20%5Ctext%7B%20and%20%7D%20f_c%5E{m}(0)%5Cneq0\%20(\5Cforall\,m%3Cn))
+  ![bulb condition](https://latex.codecogs.com/svg.latex?\bg_white%20f_c(z)%3D%20z%5E2%2Bc,\quad%20f_c%5E{n}(0)%3D0%20\text{%20and%20}%20f_c%5E{m}(0)\neq0\%20(\forall\,m%3Cn))
 
   Centers are superattracting; interior points have multiplier \(|(f_c^{\,n})'(z^\*)|<1\).
 

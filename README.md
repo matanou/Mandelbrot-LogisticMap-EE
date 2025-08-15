@@ -1,3 +1,4 @@
+
 # Mandelbrot-LogisticMap-EE
 
 Code and visualisations for my IB Mathematics AA HL Extended Essay.
@@ -20,9 +21,7 @@ This repo contains the analysis and code used to study a period-preserving link 
 
 - **The Logistic map** (population model)
 
-  $$
-  x_{n+1}=rx_n(1-x_n)
-  $$
+<pre> `z_{n+1} = z_n^2 + c` `x_{n+1} = r * x_n * (1 - x_n)` </pre>
 
   whose bifurcation diagram shows windows of stable period-$k$ behaviour interleaved with chaos.
 

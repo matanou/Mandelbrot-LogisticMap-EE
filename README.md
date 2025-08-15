@@ -44,9 +44,9 @@ The bifurcation diagram of the logistic map shows **stability windows** — inte
 
 ### Analytical Approach
 
-- For the logistic map:
+For the logistic map:
 
-  Candidate cycle points of period $k$ are solutions of
+Candidate cycle points of period $k$ are solutions of
 
 $$
 f_r ^{(k)}(x) = x
@@ -54,22 +54,22 @@ $$
 
 where $f_r(x) = r x (1-x)$ and $f_r^{(k)}$ denotes the $k$-th iterate.
 
-  Stability is determined by:
+Stability is determined by:
 
 $$
 \left| (f_r^{(k)})'(x) \right| = \prod_{j=0}^{k-1} | f_r'(x_j) | < 1
 $$
 
-- For the Mandelbrot set:
+For the Mandelbrot set:
 
-  Period-$n$ bulbs correspond to parameters $c$ such that:
+Period-$n$ bulbs correspond to parameters $c$ such that:
 
 $$
 f_c^{(n)}(0) = 0, \quad f_c^{(m)}(0) \neq 0 \quad \forall m < n
 $$
 
-  with $f_c(z) = z^2 + c$.  
-  Stability of these cycles is confirmed when:
+with $f_c(z) = z^2 + c$.  
+Stability of these cycles is confirmed when:
 
 $$
 \left| (f_c^{(n)})'(z^*) \right| < 1
@@ -78,21 +78,21 @@ $$
 ### Computational Approach
 
 - **Bifurcation diagram**:
-  - Sweep $r \in [2.8, 4]$ on a fine grid.
-  - Iterate the logistic map, discard burn-in, and plot subsequent values.
-  - Detect cycle periods numerically.
+- Sweep $r \in [2.8, 4]$ on a fine grid.
+- Iterate the logistic map, discard burn-in, and plot subsequent values.
+- Detect cycle periods numerically.
 
 - **Mandelbrot set**:
-  - Generate via escape-time algorithm with $R = 2$.
-  - Identify bulbs and verify period-$n$ dynamics.
+- Generate via escape-time algorithm with $R = 2$.
+- Identify bulbs and verify period-$n$ dynamics.
 
 - **Comparison**:
-  - Match stability windows (logistic map) with bulbs (Mandelbrot set).
-  - Pair diagrams side-by-side to illustrate correspondence.
+- Match stability windows (logistic map) with bulbs (Mandelbrot set).
+- Pair diagrams side-by-side to illustrate correspondence.
 
 ---
 
-## 📊 Results (Preview)
+## Results (Preview)
 
 - Period-1 region ($1 < r < 3$) in logistic map ↔ Main cardioid of Mandelbrot set.  
 - Period-2 stability window in logistic map ↔ Period-2 bulb in Mandelbrot set.  
@@ -100,7 +100,7 @@ $$
 
 ---
 
-## 🖥️ Repository Contents
+## Repository Contents
 
 - `src/` — Python scripts for:
   - Generating Mandelbrot set visualisations

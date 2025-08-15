@@ -21,7 +21,7 @@ This repo contains the analysis and code used to study a period-preserving link 
 - **The Logistic map** (population model)
 
   $$
-  x_{n+1}=r\,x_n(1-x_n)
+  x_{n+1}=rx_n(1-x_n)
   $$
 
   whose bifurcation diagram shows windows of stable period-$k$ behaviour interleaved with chaos.

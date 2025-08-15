@@ -5,13 +5,13 @@ The project investigates the relationship between **period-n bulbs of the Mandel
 
 ---
 
-## 📌 Research Question
+## Research Question
 
 **How do the period-n bulbs of the Mandelbrot set correspond to stability regions in the bifurcation diagram of the logistic map?**
 
 ---
 
-## 📖 Background
+## Background
 
 ### Mandelbrot Set
 
@@ -40,7 +40,7 @@ The bifurcation diagram of the logistic map shows **stability windows** — inte
 
 ---
 
-## 🧮 Methodology
+## Methodology
 
 ### Analytical Approach
 
@@ -48,32 +48,32 @@ The bifurcation diagram of the logistic map shows **stability windows** — inte
 
   Candidate cycle points of period $k$ are solutions of
 
-  $$
-  f_r^{(k)}(x) = x
-  $$
+$$
+f_r ^{(k)}(x) = x
+$$
 
-  where $f_r(x) = r x (1-x)$ and $f_r^{(k)}$ denotes the $k$-th iterate.
+where $f_r(x) = r x (1-x)$ and $f_r^{(k)}$ denotes the $k$-th iterate.
 
   Stability is determined by:
 
-  $$
-  \left| (f_r^{(k)})'(x) \right| = \prod_{j=0}^{k-1} | f_r'(x_j) | < 1
-  $$
+$$
+\left| (f_r^{(k)})'(x) \right| = \prod_{j=0}^{k-1} | f_r'(x_j) | < 1
+$$
 
 - For the Mandelbrot set:
 
   Period-$n$ bulbs correspond to parameters $c$ such that:
 
-  $$
-  f_c^{(n)}(0) = 0, \quad f_c^{(m)}(0) \neq 0 \quad \forall m < n
-  $$
+$$
+f_c^{(n)}(0) = 0, \quad f_c^{(m)}(0) \neq 0 \quad \forall m < n
+$$
 
   with $f_c(z) = z^2 + c$.  
   Stability of these cycles is confirmed when:
 
-  $$
-  \left| (f_c^{(n)})'(z^*) \right| < 1
-  $$
+$$
+\left| (f_c^{(n)})'(z^*) \right| < 1
+$$
 
 ### Computational Approach
 

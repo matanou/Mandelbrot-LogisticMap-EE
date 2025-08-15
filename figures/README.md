@@ -13,7 +13,7 @@ Repro steps and parameters are recorded here for transparency and IB academic in
 | Label in EE | Filename                      | Source script                | How to reproduce (example command)                                             |
 |-------------|-------------------------------|------------------------------|--------------------------------------------------------------------------------|
 | Figure 1    | `mandelbrot.png`              | `src/mandelbrot_vis.py`      | see command below                                                              |
-| Figure 2    | `bifurcation.png`             | `src/Bifurcation_of_LogisticMap.py`| see command below                                                              |
+| Figure 2    | `bifurcation.png`             | `src/bifurcation_of_logistic_map.py`| see command below                                                              |
 
 ---
 
@@ -29,3 +29,9 @@ python src/mandelbrot_vis.py \
   --width 2400 --height 1800 --max-iter 500 \
   --cmap magma \
   --out figures/mandelbrot.png
+
+python src/logistic_bifurcation.py \
+  --r-min 2.5 --r-max 4.0 --r-steps 5000 \
+  --x0 0.5 \
+  --n-transient 1000 --n-keep 200 \
+  --out figures/bifurcation.png

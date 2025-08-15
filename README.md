@@ -105,7 +105,6 @@ $$
 - `src/` — Python scripts for:
   - Generating Mandelbrot set visualisations
   - Computing and plotting logistic map bifurcation diagrams
-- `figures/` — Self-generated figures used in the essay
 - `notebooks/` — Jupyter notebooks with computational experiments
 - `EE.pdf` — Full Extended Essay writeup
 

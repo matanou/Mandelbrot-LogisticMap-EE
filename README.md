@@ -109,17 +109,3 @@ $$
 - `notebooks/` — Jupyter notebooks with computational experiments
 - `EE.pdf` — Full Extended Essay writeup
 
----
-
-## 🔧 Dependencies
-
-- Python 3.10+
-- `numpy`
-- `matplotlib`
-- `numba` (optional, for speedup)
-- `tkinter` (for interactive tools)
-
-Install requirements via:
-
-```bash
-pip install -r requirements.txt

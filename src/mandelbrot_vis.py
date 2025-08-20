@@ -9,6 +9,10 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from matplotlib.widgets import RectangleSelector
 
+# NEW: extra matplotlib imports for colormaps
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+
 # Try to use numba for speed
 try:
     from numba import njit, prange
@@ -86,7 +90,18 @@ class MandelbrotApp(tk.Tk):
         # Style
         self.dark_mode = tk.BooleanVar(value=True)
         self.enable_color = tk.BooleanVar(value=True)
-        self.color_map = tk.StringVar(value="turbo")
+
+        # --- NEW COLOR CONTROLS ---
+        # All available colormap names
+        try:
+            available_cmaps = sorted(matplotlib.colormaps())
+        except Exception:
+            available_cmaps = sorted(plt.colormaps())
+        self.color_map = tk.StringVar(value="turbo" if "turbo" in available_cmaps else available_cmaps[0])
+        self.cmap_reverse = tk.BooleanVar(value=False)
+        self.color_levels = tk.IntVar(value=0)  # 0 = continuous, >0 = discrete bands
+
+        self.show_axes = tk.BooleanVar(value=False)  # toggle axes
 
         # Render params
         self.width = tk.IntVar(value=800)
@@ -139,6 +154,7 @@ class MandelbrotApp(tk.Tk):
         self.status.grid(row=1, column=0, sticky="ew", pady=(8, 0))
 
         # Sidebar controls
+        self._available_cmaps = available_cmaps  # stash for combobox
         self._build_sidebar()
 
         # State
@@ -180,44 +196,63 @@ class MandelbrotApp(tk.Tk):
 
         ttk.Checkbutton(sf, text="Enable color", variable=self.enable_color,
                         command=self._redraw_last).grid(row=1, column=0, columnspan=2, sticky="w")
-        ttk.Label(sf, text="Color map").grid(row=2, column=0, sticky="w", padx=(0, 6))
-        cmap_box = ttk.Combobox(sf, textvariable=self.color_map, state="readonly",
-                                values=["turbo", "plasma", "inferno", "viridis", "twilight_shifted", "magma", "cividis"])
+
+        # --- NEW COLOR CONTROLS ---
+        ttk.Label(sf, text="Colormap").grid(row=2, column=0, sticky="w", padx=(0, 6))
+        cmap_box = ttk.Combobox(
+            sf, textvariable=self.color_map, state="readonly",
+            values=self._available_cmaps, height=15
+        )
         cmap_box.grid(row=2, column=1, sticky="ew")
         cmap_box.bind("<<ComboboxSelected>>", lambda e: self._redraw_last())
+
+        ttk.Checkbutton(sf, text="Reverse colormap",
+                        variable=self.cmap_reverse,
+                        command=self._redraw_last).grid(row=3, column=0, columnspan=2, sticky="w")
+
+        ttk.Label(sf, text="Discrete levels (0=continuous)").grid(row=4, column=0, sticky="w", padx=(0, 6))
+        ttk.Spinbox(sf, from_=0, to=512, increment=1,
+                    textvariable=self.color_levels, command=self._redraw_last)\
+            .grid(row=4, column=1, sticky="ew")
+
+        # Axes toggle
+        ttk.Checkbutton(sf, text="Show axes (ticks & spines)",
+                        variable=self.show_axes,
+                        command=self._apply_axis_visibility)\
+            .grid(row=5, column=0, columnspan=2, sticky="w", pady=(6, 0))
 
         # Drag-zoom
         ttk.Checkbutton(sf, text="Drag-zoom (select → center zoom)",
                         variable=self.drag_zoom, command=self._toggle_selector)\
-            .grid(row=3, column=0, columnspan=2, sticky="w", pady=(6, 0))
-        ttk.Label(sf, text="Zoom factor").grid(row=4, column=0, sticky="w", padx=(0, 6))
+            .grid(row=6, column=0, columnspan=2, sticky="w", pady=(6, 0))
+        ttk.Label(sf, text="Zoom factor").grid(row=7, column=0, sticky="w", padx=(0, 6))
         ttk.Spinbox(sf, from_=1.2, to=20.0, increment=0.2,
-                    textvariable=self.zoom_factor_ctrl).grid(row=4, column=1, sticky="ew")
+                    textvariable=self.zoom_factor_ctrl).grid(row=7, column=1, sticky="ew")
 
         # Iteration scaling (exponential)
         ttk.Checkbutton(sf, text="Auto-increase iterations (exponential)",
-                        variable=self.auto_iter).grid(row=5, column=0, columnspan=2, sticky="w", pady=(8, 0))
-        ttk.Label(sf, text="Power").grid(row=6, column=0, sticky="w", padx=(0, 6))
+                        variable=self.auto_iter).grid(row=8, column=0, columnspan=2, sticky="w", pady=(8, 0))
+        ttk.Label(sf, text="Power").grid(row=9, column=0, sticky="w", padx=(0, 6))
         ttk.Spinbox(sf, from_=0.5, to=3.0, increment=0.1,
-                    textvariable=self.iter_power).grid(row=6, column=1, sticky="ew")
+                    textvariable=self.iter_power).grid(row=9, column=1, sticky="ew")
 
         # High precision
         ttk.Checkbutton(sf, text="High Precision Mode",
-                        variable=self.high_prec).grid(row=7, column=0, columnspan=2, sticky="w", pady=(8, 0))
-        ttk.Label(sf, text="Decimal digits").grid(row=8, column=0, sticky="w", padx=(0, 6))
+                        variable=self.high_prec).grid(row=10, column=0, columnspan=2, sticky="w", pady=(8, 0))
+        ttk.Label(sf, text="Decimal digits").grid(row=11, column=0, sticky="w", padx=(0, 6))
         ttk.Spinbox(sf, from_=30, to=500, increment=10,
-                    textvariable=self.decimal_places).grid(row=8, column=1, sticky="ew")
+                    textvariable=self.decimal_places).grid(row=11, column=1, sticky="ew")
 
         # Zoom readout + actions
-        ttk.Label(sf, text="Current zoom (×)").grid(row=9, column=0, sticky="w", padx=(0, 6))
-        ttk.Label(sf, textvariable=self.zoom_level).grid(row=9, column=1, sticky="w")
+        ttk.Label(sf, text="Current zoom (×)").grid(row=12, column=0, sticky="w", padx=(0, 6))
+        ttk.Label(sf, textvariable=self.zoom_level).grid(row=12, column=1, sticky="w")
 
         ttk.Button(sf, text="Generate", command=self._on_generate_click)\
-            .grid(row=10, column=0, columnspan=2, sticky="ew", pady=(8, 0))
+            .grid(row=13, column=0, columnspan=2, sticky="ew", pady=(8, 0))
         ttk.Button(sf, text="Reset view", command=self._reset_view)\
-            .grid(row=11, column=0, columnspan=2, sticky="ew", pady=(6, 0))
+            .grid(row=14, column=0, columnspan=2, sticky="ew", pady=(6, 0))
         ttk.Button(sf, text="Save PNG", command=self._save_png)\
-            .grid(row=12, column=0, columnspan=2, sticky="ew", pady=(6, 0))
+            .grid(row=15, column=0, columnspan=2, sticky="ew", pady=(6, 0))
 
         # Progress
         self.progress = ttk.Progressbar(self.sidebar, mode="determinate", maximum=100)
@@ -233,12 +268,67 @@ class MandelbrotApp(tk.Tk):
         for s in self.ax.spines.values():
             s.set_color(fg)
         self.ax.tick_params(colors=fg)
-        self.ax.set_xticks([]); self.ax.set_yticks([])
-        self.canvas.draw()
+        # Update labels if visible
+        if self.show_axes.get():
+            self.ax.xaxis.label.set_color(fg)
+            self.ax.yaxis.label.set_color(fg)
+        self.canvas.draw_idle()
+
+    def _apply_axis_visibility(self):
+        """Show/hide ticks, spines, and axis labels."""
+        show = bool(self.show_axes.get())
+
+        # Toggle ticks & spines
+        self.ax.xaxis.set_visible(show)
+        self.ax.yaxis.set_visible(show)
+        for s in self.ax.spines.values():
+            s.set_visible(show)
+
+        # Toggle labels
+        if show:
+            fg = "#e5e7eb" if self.dark_mode.get() else "#111827"
+            self.ax.set_xlabel("Re(c)", color=fg)
+            self.ax.set_ylabel("Im(c)", color=fg)
+        else:
+            self.ax.set_xlabel("")
+            self.ax.set_ylabel("")
+
+        self.canvas.draw_idle()
+
+    def _resolve_cmap(self):
+        """
+        Build the colormap object from name + reverse + discrete levels.
+        """
+        # pick name (optionally reversed)
+        name = self.color_map.get()
+        if self.cmap_reverse.get():
+            # Use reversed variant if exists, else reverse manually
+            candidate = f"{name}_r"
+            try:
+                base = matplotlib.colormaps.get(candidate)
+            except Exception:
+                base = matplotlib.colormaps.get(name)
+                # manual reverse
+                colors = base(np.linspace(0, 1, 256))[::-1]
+                base = mcolors.ListedColormap(colors)
+        else:
+            base = matplotlib.colormaps.get(name)
+
+        # Discrete levels?
+        levels = int(self.color_levels.get())
+        if levels and levels > 0:
+            # sample the base cmap at N evenly spaced points
+            colors = base(np.linspace(0, 1, levels))
+            return mcolors.ListedColormap(colors)
+        return base
 
     def _plot_image(self, img):
         self.ax.clear()
-        cmap = self.color_map.get() if self.enable_color.get() else "gray"
+        if self.enable_color.get():
+            cmap = self._resolve_cmap()
+        else:
+            cmap = "gray"
+
         self.ax.imshow(
             img,
             extent=[self.xmin.get(), self.xmax.get(), self.ymin.get(), self.ymax.get()],
@@ -246,9 +336,9 @@ class MandelbrotApp(tk.Tk):
             cmap=cmap,
             interpolation="nearest",
         )
-        self.ax.set_xticks([]); self.ax.set_yticks([])
+        # Apply theme and current axis visibility
         self._apply_dark_mode()
-        self.canvas.draw()
+        self._apply_axis_visibility()
         self._ensure_selector()  # reattach selector after clear
 
     def _redraw_last(self):

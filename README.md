@@ -100,6 +100,9 @@ Two Python GUI tools were developed:
    - Provides zoomable fractal visualisations with adjustable iteration depth.  
    - Supports high-precision rendering and over 190 colour maps.  
 
+### Here is an example of the interface for the Mandelbrot set:
+![Bifurcation Diagram](figures/Mandelbrot/Mandelbrot_interface.PNG)
+
 These tools enable visual and computational confirmation of the correspondence between logistic stability windows and Mandelbrot bulbs.
 
 

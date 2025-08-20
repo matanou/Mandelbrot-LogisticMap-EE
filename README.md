@@ -52,16 +52,23 @@ The bifurcation diagram of the logistic map shows **stability windows** — inte
 A conjugacy is constructed between the two systems:
 
 - Define the transformation  
+
 $$
-\Phi_r(x) = \tfrac{r}{2}(1-2x), \quad \psi(r) = \tfrac{r(2-r)}{4}.
+\Phi_r(x) = \frac{r}{2}(1-2x), \quad \psi(r) = \frac{r(2-r)}{4}.
 $$
 
 - Then  
+
 $$
-  \Phi_r \circ f_r = P_{\psi(r)} \circ \Phi_r,
+\Phi_r \circ f_r = P_{\psi(r)} \circ \Phi_r,
+$$  
+
+where  
+
 $$
-  where
-$$ \(f_r(x) = r x(1-x)\) $$ and $$\(P_c(z) = z^2 + c\).$$  
+f_r(x) = r x(1-x), \quad P_c(z) = z^2 + c.
+$$
+
 
 **Consequences:**
 1. Periods correspond: a cycle of period \(k\) in \(f_r\) maps to a period \(k\) cycle in \(P_{\psi(r)}\).  

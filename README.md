@@ -93,7 +93,7 @@ Two Python GUI tools were developed:
    - Generates bifurcation diagrams, cobweb plots, and time series.  
    - Includes cycle detection and stability checks.
   
-## Here is an example of the interface for the Logistic map:
+### Here is an example of the interface for the Logistic map:
 ![Bifurcation Diagram](figures/Logistic_Map/Bifurcation_interface.PNG)
 
 2. **Mandelbrot Explorer**  

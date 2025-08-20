@@ -112,6 +112,7 @@ These tools enable visual and computational confirmation of the correspondence b
   - Generating Mandelbrot set visualisations
   - Computing and plotting logistic map bifurcation diagrams
 - `figures/` — All figures used in my EE as png files
+- `Gallery.md` - All figures and screenshots done through the different explorers.
 - `EE.pdf` — Full Extended Essay writeup
 
 ## Requirements

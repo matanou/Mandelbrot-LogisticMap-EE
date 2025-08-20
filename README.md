@@ -111,7 +111,7 @@ These tools enable visual and computational confirmation of the correspondence b
 - `src/` — Python scripts for:
   - Generating Mandelbrot set visualisations
   - Computing and plotting logistic map bifurcation diagrams
-- `notebooks/` — Jupyter notebooks with computational experiments
+- `figures/` — All figures used in my EE as png files
 - `EE.pdf` — Full Extended Essay writeup
 
 ## Requirements

@@ -133,7 +133,12 @@ To launch the interactive logistic map explorer (bifurcation diagram, cobweb plo
 
 ```bash
 python src/bifurcation_app.py
+```
 
+### Logistic Map Explorer
+To launch the interactive logistic map explorer (bifurcation diagram, cobweb plot, and time series):
 
-
+```bash
+python src/bifurcation_app.py
+```
 

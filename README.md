@@ -71,18 +71,18 @@ $$
 
 
 **Consequences:**
-1. Periods correspond: a cycle of period \(k\) in \(f_r\) maps to a period \(k\) cycle in \(P_{\psi(r)}\).  
+1. Periods correspond: a cycle of period $k$ in $f_r$ maps to a period $k$ cycle in $P_{\psi(r)}$.  
 2. Multipliers are preserved, ensuring stability equivalence.  
-3. Logistic window centres (\(f_r^{(n)}(1/2)=1/2\)) map to Mandelbrot bulb centres (\(P_c^{(n)}(0)=0\)).  
-4. Endpoints where \(|(f_r^{(k)})'(x)|=1\) correspond to bulb boundaries.
+3. Logistic window centres (where $f_r^{(n)}(1/2)=1/2$) map to Mandelbrot bulb centres (where $P_c^{(n)}(0)=0$).  
+4. Endpoints where $\lvert (f_r^{(k)})'(x) \rvert = 1$ correspond to bulb boundaries.
 
 ---
 
 ### Numerical Approach
-- Compute stability intervals of the logistic map using the multiplier condition \(|\Lambda| < 1\).  
-- Map intervals and centres into the Mandelbrot plane via \(c = \psi(r)\).  
+- Compute stability intervals of the logistic map using the multiplier condition $\lvert \Lambda \rvert < 1$.  
+- Map intervals and centres into the Mandelbrot plane via $c = \psi(r)$.  
 - Verify coincidence of window and bulb boundaries numerically.  
-- Endpoints near bifurcation thresholds are reported with precision \(\pm 10^{-5}\).
+- Endpoints near bifurcation thresholds are reported with precision $\pm 10^{-5}$.
 
 ---
 

@@ -42,63 +42,55 @@ The bifurcation diagram of the logistic map shows **stability windows** — inte
 
 ## Methodology
 
+### Hypotheses
+- **Null hypothesis**: There is no systematic correspondence between the period-n bulbs of the Mandelbrot set and the stability windows of the logistic map; any resemblance is accidental.  
+- **Research hypothesis**: The period-n bulbs of the Mandelbrot set correspond directly to the period-n stability windows of the logistic map.
+
+---
+
 ### Analytical Approach
+A conjugacy is constructed between the two systems:
 
-For the logistic map:
+- Define the transformation  
+  \[
+  \Phi_r(x) = \tfrac{r}{2}(1-2x), \quad \psi(r) = \tfrac{r(2-r)}{4}.
+  \]  
 
-Candidate cycle points of period $k$ are solutions of
+- Then  
+  \[
+  \Phi_r \circ f_r = P_{\psi(r)} \circ \Phi_r,
+  \]  
+  where \(f_r(x) = r x(1-x)\) and \(P_c(z) = z^2 + c\).  
 
-$$
-f_r ^{(k)}(x) = x
-$$
+**Consequences:**
+1. Periods correspond: a cycle of period \(k\) in \(f_r\) maps to a period \(k\) cycle in \(P_{\psi(r)}\).  
+2. Multipliers are preserved, ensuring stability equivalence.  
+3. Logistic window centres (\(f_r^{(n)}(1/2)=1/2\)) map to Mandelbrot bulb centres (\(P_c^{(n)}(0)=0\)).  
+4. Endpoints where \(|(f_r^{(k)})'(x)|=1\) correspond to bulb boundaries.
 
-where $f_r(x) = r x (1-x)$ and $f_r^{(k)}$ denotes the $k$-th iterate.
+---
 
-Stability is determined by:
+### Numerical Approach
+- Compute stability intervals of the logistic map using the multiplier condition \(|\Lambda| < 1\).  
+- Map intervals and centres into the Mandelbrot plane via \(c = \psi(r)\).  
+- Verify coincidence of window and bulb boundaries numerically.  
+- Endpoints near bifurcation thresholds are reported with precision \(\pm 10^{-5}\).
 
-$$
-\left| (f_r^{(k)})'(x) \right| = \prod_{j=0}^{k-1} | f_r'(x_j) | < 1
-$$
-
-For the Mandelbrot set:
-
-Period-$n$ bulbs correspond to parameters $c$ such that:
-
-$$
-f_c^{(n)}(0) = 0, \quad f_c^{(m)}(0) \neq 0 \quad \forall m < n
-$$
-
-with $f_c(z) = z^2 + c$.  
-Stability of these cycles is confirmed when:
-
-$$
-\left| (f_c^{(n)})'(z^*) \right| < 1
-$$
+---
 
 ### Computational Approach
+Two Python GUI tools were developed:
 
-- **Bifurcation diagram**:
-- Sweep $r \in [2.8, 4]$ on a fine grid.
-- Iterate the logistic map, discard burn-in, and plot subsequent values.
-- Detect cycle periods numerically.
+1. **Logistic Map Explorer**  
+   - Generates bifurcation diagrams, cobweb plots, and time series.  
+   - Includes cycle detection and stability checks.
 
-- **Mandelbrot set**:
-- Generate via escape-time algorithm with $R = 2$.
-- Identify bulbs and verify period-$n$ dynamics.
+2. **Mandelbrot Explorer**  
+   - Provides zoomable fractal visualisations with adjustable iteration depth.  
+   - Supports high-precision rendering and over 190 colour maps.  
 
-- **Comparison**:
-- Match stability windows (logistic map) with bulbs (Mandelbrot set).
-- Pair diagrams side-by-side to illustrate correspondence.
+These tools enable visual and computational confirmation of the correspondence between logistic stability windows and Mandelbrot bulbs.
 
----
-
-## Results (Preview)
-
-- Period-1 region ($1 < r < 3$) in logistic map ↔ Main cardioid of Mandelbrot set.  
-- Period-2 stability window in logistic map ↔ Period-2 bulb in Mandelbrot set.  
-- Higher-order bulbs (period-3, period-4, etc.) ↔ Corresponding stability regions in bifurcation diagram.
-
----
 
 ## Repository Contents
 

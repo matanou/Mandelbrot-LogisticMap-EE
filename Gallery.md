@@ -23,13 +23,13 @@ Extra screenshots from the **Logistic Map Explorer** and **Mandelbrot Explorer**
   ![Period‑4 window](figures/Logistic_Map/Bifurcation_period4_window.png)
 
 **Time series examples**
-- Example 1  
+- Example period-1  
   ![Time series 1](figures/Logistic_Map/Bifurcation_time_series1.png)
-- Example 2  
+- Example period-2  
   ![Time series 2](figures/Logistic_Map/Bifurcation_time_series2.png)
-- Example 4  
+- Example period-4  
   ![Time series 4](figures/Logistic_Map/Bifurcation_time_series4.png)
-- Example 8  
+- Example period-8  
   ![Time series 8](figures/Logistic_Map/Bifurcation_time_series8.png)
 
 ---

@@ -108,3 +108,21 @@ These tools enable visual and computational confirmation of the correspondence b
 - `notebooks/` — Jupyter notebooks with computational experiments
 - `EE.pdf` — Full Extended Essay writeup
 
+## Requirements
+
+Both programs require **Python 3.9+** and the following libraries:
+
+- [numpy](https://numpy.org/)  
+- [matplotlib](https://matplotlib.org/)  
+- [tkinter](https://docs.python.org/3/library/tkinter.html) *(included with most Python distributions)*  
+- [numba](https://numba.pydata.org/) *(optional, for faster Mandelbrot rendering)*  
+- [mpmath](https://mpmath.org/) *(for high-precision Mandelbrot zooms)*  
+
+### Installation
+
+Install dependencies with:
+
+```bash
+pip install numpy matplotlib numba mpmath
+
+

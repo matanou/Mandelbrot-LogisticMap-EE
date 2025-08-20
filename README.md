@@ -124,5 +124,16 @@ Install dependencies with:
 
 ```bash
 pip install numpy matplotlib numba mpmath
+```
+
+## Running the Programs
+
+### Logistic Map Explorer
+To launch the interactive logistic map explorer (bifurcation diagram, cobweb plot, and time series):
+
+```bash
+python src/bifurcation_app.py
+
+
 
 

@@ -92,7 +92,7 @@ Two Python GUI tools were developed:
 1. **Logistic Map Explorer**  
    - Generates bifurcation diagrams, cobweb plots, and time series.  
    - Includes cycle detection and stability checks.
-   - ![Bifurcation Diagram](figures/Logistic_Map/Bifurcation_interface.png)
+   - ![Bifurcation Diagram](figures/Logistic_Map/Bifurcation_interface.PNG)
 
 2. **Mandelbrot Explorer**  
    - Provides zoomable fractal visualisations with adjustable iteration depth.  
